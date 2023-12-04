@@ -5,6 +5,7 @@ import { FirebaseError } from 'firebase/app';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import GithubButton from '../components/Github-Btn';
+import Logo from '../components/common/Logo';
 
 export default function Login() {
 	const navigate = useNavigate();
@@ -37,7 +38,9 @@ export default function Login() {
 	};
 	return (
 		<Wrapper>
-			<Title>Log Into 𝕏</Title>
+			<Title>
+				<Logo />
+			</Title>
 			<Form onSubmit={onSubmit}>
 				<Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required />
 				<Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required />

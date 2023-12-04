@@ -4,7 +4,7 @@ import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 
 const Button = styled.span`
-	margin-top: 50px;
+	margin-top: 12px;
 	background-color: white;
 	font-weight: 500;
 	width: 100%;
@@ -37,7 +37,7 @@ export default function GithubButton() {
 	return (
 		<Button onClick={onClick}>
 			<Logo src="/github-logo.svg" />
-			깃허브로 진행하기
+			깃허브에서 가입하기
 		</Button>
 	);
 }

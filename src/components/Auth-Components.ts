@@ -4,12 +4,16 @@ export const Wrapper = styled.div`
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+`;
+export const Div = styled.div`
+	width: 50%;
+	display: flex;
+	justify-content: center;
 	align-items: center;
-	width: 428px;
-	padding: 50px 0px;
 `;
 export const Title = styled.h1`
 	font-size: 42px;
+	font-weight: 600;
 `;
 export const Form = styled.form`
 	margin-top: 50px;

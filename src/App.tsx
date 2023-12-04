@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 import LoadingScreen from './components/Loading-Screen';
 import { auth } from './firebase';
 import ProtectedRoute from './components/Protected-Route';
+import Auth from './routes/Auth';
+import AuthLoginIndex from './routes/Auth-Login-index';
 
 const router = createBrowserRouter([
 	{
@@ -31,12 +33,28 @@ const router = createBrowserRouter([
 		],
 	},
 	{
+		path: '/login-index',
+		element: (
+			<Auth>
+				<AuthLoginIndex />
+			</Auth>
+		),
+	},
+	{
 		path: '/login',
-		element: <Login />,
+		element: (
+			<Auth>
+				<Login />
+			</Auth>
+		),
 	},
 	{
 		path: '/create-account',
-		element: <CreateAccount />,
+		element: (
+			<Auth>
+				<CreateAccount />
+			</Auth>
+		),
 	},
 ]);
 
@@ -53,6 +71,7 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
+	width: 100vw;
 	height: 100vh;
 	display: flex;
 	justify-content: center;
