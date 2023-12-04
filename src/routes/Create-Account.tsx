@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { auth } from '../firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { FirebaseError } from 'firebase/app';
-import { Error, Form, Input, Switcher, Title, Wrapper } from '../components/Auth-Components';
+import { Buttons, Error, Form, Input, MainTitle, Switcher, Title, Wrapper } from '../components/Auth-Components';
 import GithubButton from '../components/Github-Btn';
 
 export default function CreateAccount() {
@@ -44,18 +44,20 @@ export default function CreateAccount() {
 	};
 	return (
 		<Wrapper>
-			<Title>Join</Title>
-			<Form onSubmit={onSubmit}>
-				<Input onChange={onChange} name="name" value={name} placeholder="Name" type="text" required />
-				<Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required />
-				<Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required />
-				<Input type="submit" value={isLoading ? 'Loading' : 'Create Account'} />
-			</Form>
-			{error !== '' ? <Error>{error}</Error> : null}
-			<Switcher>
-				이미 계정이 있으신가요? <Link to="/login">로그인 하러가기 &rarr;</Link>
-			</Switcher>
-			<GithubButton />
+			<MainTitle>지금 일어나고 있는 일</MainTitle>
+			<Title>계정을 생성하세요</Title>
+			<Buttons>
+				<Form onSubmit={onSubmit}>
+					<Input onChange={onChange} name="name" value={name} placeholder="이름" type="text" required />
+					<Input onChange={onChange} name="email" value={email} placeholder="이메일" type="email" required />
+					<Input onChange={onChange} name="password" value={password} placeholder="비밀번호" type="password" required />
+					<Input type="submit" value={isLoading ? 'Loading' : '가입하기'} />
+				</Form>
+				{error !== '' ? <Error>{error}</Error> : null}
+				<Switcher>
+					이미 계정이 있으신가요? <Link to="/login-index">로그인하러 가기</Link>
+				</Switcher>
+			</Buttons>
 		</Wrapper>
 	);
 }

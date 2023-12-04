@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 `;
-export const Div = styled.div`
+export const HalfDiv = styled.div`
 	width: 50%;
 	display: flex;
 	justify-content: center;
@@ -16,7 +16,7 @@ export const Title = styled.h1`
 	font-weight: 600;
 `;
 export const Form = styled.form`
-	margin-top: 50px;
+	margin-top: 20px;
 	margin-bottom: 10px;
 	display: flex;
 	flex-direction: column;
@@ -47,5 +47,25 @@ export const Switcher = styled.span`
 	margin-top: 20px;
 	a {
 		color: #8cc152;
+		text-decoration: none;
 	}
+`;
+
+export const Buttons = styled.div`
+	margin-top: 30px;
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+`;
+
+export const MainTitle = styled.h1`
+	font-size: 70px;
+	font-weight: 600;
+	padding: 50px 0px;
+`;
+
+export const SubTitle = styled.h2`
+	margin-top: 20px;
+	font-size: 20px;
+	font-weight: 600;
 `;

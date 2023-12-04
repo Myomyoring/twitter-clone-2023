@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Div } from '../components/Auth-Components';
+import { HalfDiv } from '../components/Auth-Components';
 import Logo from '../components/common/Logo';
 
 const Wrapper = styled.div`
@@ -12,10 +12,10 @@ const Wrapper = styled.div`
 export default function Auth({ children }: { children: React.ReactNode }) {
 	return (
 		<Wrapper>
-			<Div>
+			<HalfDiv>
 				<Logo />
-			</Div>
-			<Div>{children}</Div>
+			</HalfDiv>
+			<HalfDiv>{children}</HalfDiv>
 		</Wrapper>
 	);
 }

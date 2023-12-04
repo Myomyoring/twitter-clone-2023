@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Error, Form, Input, Switcher, Title, Wrapper } from '../components/Auth-Components';
+import { Buttons, Error, Form, Input, MainTitle, Switcher, Title, Wrapper } from '../components/Auth-Components';
 import { FirebaseError } from 'firebase/app';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import GithubButton from '../components/Github-Btn';
-import Logo from '../components/common/Logo';
+import OrLine from '../components/common/OrLine';
+import GoogleButton from '../components/Google-Btn';
 
 export default function Login() {
 	const navigate = useNavigate();
@@ -38,19 +39,22 @@ export default function Login() {
 	};
 	return (
 		<Wrapper>
-			<Title>
-				<Logo />
-			</Title>
-			<Form onSubmit={onSubmit}>
-				<Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required />
-				<Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required />
-				<Input type="submit" value={isLoading ? 'Loading' : 'Log In'} />
-			</Form>
-			{error !== '' ? <Error>{error}</Error> : null}
-			<Switcher>
-				계정이 없으세요? <Link to="/create-account">회원가입 &rarr;</Link>
-			</Switcher>
-			<GithubButton />
+			<MainTitle>지금 일어나고 있는 일</MainTitle>
+			<Title>가입하기</Title>
+			<Buttons>
+				<GoogleButton />
+				<GithubButton />
+				<OrLine />
+				<Form onSubmit={onSubmit}>
+					<Input onChange={onChange} name="email" value={email} placeholder="이메일 주소" type="email" required />
+					<Input onChange={onChange} name="password" value={password} placeholder="비밀번호" type="password" required />
+					<Input type="submit" value={isLoading ? 'Loading' : '로그인'} />
+				</Form>
+				{error !== '' ? <Error>{error}</Error> : null}
+				<Switcher>
+					계정이 없으신가요? <Link to="/create-account"> 가입하기</Link>
+				</Switcher>
+			</Buttons>
 		</Wrapper>
 	);
 }

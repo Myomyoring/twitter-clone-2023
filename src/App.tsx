@@ -11,7 +11,7 @@ import LoadingScreen from './components/Loading-Screen';
 import { auth } from './firebase';
 import ProtectedRoute from './components/Protected-Route';
 import Auth from './routes/Auth';
-import AuthLoginIndex from './routes/Auth-Login-index';
+import LoginIndex from './routes/Login-index';
 
 const router = createBrowserRouter([
 	{
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
 		path: '/login-index',
 		element: (
 			<Auth>
-				<AuthLoginIndex />
+				<LoginIndex />
 			</Auth>
 		),
 	},
