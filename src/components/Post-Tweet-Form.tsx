@@ -64,7 +64,13 @@ export default function PostTweetForm() {
 	};
 	const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { files } = e.target;
+		console.log(files);
+		const maxSize = 1 * 1024 * 1024; // 1MB
 		if (files && files.length === 1) {
+			if (files[0].size > maxSize) {
+				alert('이미지는 1MB 이하만 추가 가능합니다.');
+				return;
+			}
 			setFile(files[0]);
 		}
 	};
