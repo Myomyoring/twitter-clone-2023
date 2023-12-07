@@ -1,17 +1,16 @@
 import styled from 'styled-components';
-import { ITweet } from './TimeLine';
+import { ITweet } from './Timeline';
 import { auth, db, storage } from '../firebase';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { AttachFileButton, AttachFileInput, Form, SubmitBtn, TextArea } from './Tweet-Form-Components';
+import { AttachFileButton, AttachFileInput, Form, Nav, SubmitBtn, TextArea } from './Tweet-Form-Components';
 import { useState } from 'react';
 
 const Wrapper = styled.div`
 	display: grid;
 	grid-template-columns: 3fr 1fr;
-	padding: 20px;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	border-radius: 15px;
+	padding: 16px;
+	border-bottom: 1px solid lightgray;
 `;
 
 const Column = styled.div`
@@ -30,13 +29,13 @@ const Photo = styled.img`
 `;
 
 const Username = styled.span`
-	font-weight: 600;
-	font-size: 15px;
+	font-weight: 700;
+	font-size: 13px;
 `;
 
 const Payload = styled.p`
 	margin: 10px 0px;
-	font-size: 18px;
+	font-size: 14px;
 `;
 
 const DeleteButton = styled.button`
@@ -61,6 +60,13 @@ const UpdateButton = styled.button`
 	text-transform: uppercase;
 	border-radius: 5px;
 	cursor: pointer;
+`;
+
+const Title = styled.div`
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 3px;
 `;
 
 export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
@@ -121,6 +127,7 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 			setUpdateTweet('');
 			setFile(null);
 			setUpdateMode(false);
+			window.location.reload();
 		} catch (err) {
 			console.log(err);
 		} finally {
@@ -132,18 +139,20 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 			{!updateMode ? (
 				<Wrapper>
 					<Column>
-						<Username>{username}</Username>
+						<Title>
+							<Username>{username}</Username>
+							{user?.uid === userId ? (
+								<UpdateButton className="btn" onClick={() => setUpdateMode(true)}>
+									수정하기
+								</UpdateButton>
+							) : null}
+							{user?.uid === userId ? (
+								<DeleteButton className="btn" onClick={onDelete}>
+									삭제하기
+								</DeleteButton>
+							) : null}
+						</Title>
 						<Payload>{tweet}</Payload>
-						{user?.uid === userId ? (
-							<UpdateButton className="btn" onClick={() => setUpdateMode(true)}>
-								수정하기
-							</UpdateButton>
-						) : null}
-						{user?.uid === userId ? (
-							<DeleteButton className="btn" onClick={onDelete}>
-								삭제하기
-							</DeleteButton>
-						) : null}
 					</Column>
 					<Column>{photo ? <Photo src={photo} /> : null}</Column>
 				</Wrapper>
@@ -157,9 +166,19 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
 						value={updateTweet}
 						placeholder="무슨 일이 일어나고 있나요?"
 					/>
-					<AttachFileButton htmlFor="updateFile">{file ? '이미지 교체 완료 ✅' : '이미지 교체'}</AttachFileButton>
-					<AttachFileInput onChange={onFileChange} type="file" id="updateFile" accept="image/*" />
-					<SubmitBtn type="submit" value={isLoading ? '게시 중...' : '수정하기'} />
+					<Nav>
+						<AttachFileButton htmlFor="updateFile">
+							{file ? (
+								<>✅🖼</>
+							) : (
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+									<path d="M16 13.25A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75ZM1.75 2.5a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h.94l.03-.03 6.077-6.078a1.75 1.75 0 0 1 2.412-.06L14.5 10.31V2.75a.25.25 0 0 0-.25-.25Zm12.5 11a.25.25 0 0 0 .25-.25v-.917l-4.298-3.889a.25.25 0 0 0-.344.009L4.81 13.5ZM7 6a2 2 0 1 1-3.999.001A2 2 0 0 1 7 6ZM5.5 6a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0Z"></path>
+								</svg>
+							)}
+						</AttachFileButton>
+						<AttachFileInput onChange={onFileChange} type="file" id="updateFile" accept="image/*" />
+						<SubmitBtn type="submit" value={isLoading ? '게시 중...' : '수정하기'} />
+					</Nav>
 				</Form>
 			)}
 		</>

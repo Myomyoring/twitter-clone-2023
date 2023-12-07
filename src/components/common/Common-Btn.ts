@@ -15,7 +15,7 @@ export const CommonButton = styled.span`
 	justify-content: center;
 	cursor: pointer;
 	a {
-		color: black;
+		color: white;
 		text-decoration: none;
 	}
 `;
@@ -28,7 +28,7 @@ export const CommonLightButton = styled.span`
 	color: black;
 	padding: 15px 20px;
 	border-radius: 50px;
-	border: 0;
+	border: 1px solid lightgray;
 	display: flex;
 	gap: 5px;
 	align-items: center;

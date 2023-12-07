@@ -7,12 +7,10 @@ const LineWrap = styled.div`
 	align-items: center;
 `;
 const Line = styled.div`
-	display: flex;
-	align-self: stretch;
 	width: 130px;
 	height: 1px;
 	margin: auto;
-	border: 1px solid gray;
+	border: 1px solid lightgrey;
 `;
 const Text = styled.div`
 	padding: 0px 5px;

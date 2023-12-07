@@ -10,8 +10,8 @@ export const TextArea = styled.textarea`
 	padding: 20px;
 	border-radius: 20px;
 	font-size: 16px;
-	color: white;
-	background-color: black;
+	color: black;
+	background-color: transparent;
 	width: 100%;
 	resize: none;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
@@ -25,14 +25,14 @@ export const TextArea = styled.textarea`
 	}
 `;
 export const AttachFileButton = styled.label`
-	padding: 10px 0px;
+	padding: 10px 10px;
 	color: #8cc152;
 	text-align: center;
 	border-radius: 20px;
-	border: 1px solid #8cc152;
-	font-size: 14px;
-	font-weight: 600;
 	cursor: pointer;
+	svg {
+		fill: #8cc152;
+	}
 `;
 export const AttachFileInput = styled.input`
 	display: none;
@@ -41,12 +41,24 @@ export const SubmitBtn = styled.input`
 	background-color: #8cc152;
 	color: white;
 	border: none;
-	padding: 10px 0px;
+	padding: 7px 14px;
 	border-radius: 20px;
-	font-size: 16px;
+	font-size: 14px;
+	font-weight: 600;
 	cursor: pointer;
 	&:hover,
 	&:active {
 		opacity: 0.9;
 	}
+`;
+
+export const Nav = styled.nav`
+	width: 100%;
+	padding: 10px 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 14px;
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
 `;

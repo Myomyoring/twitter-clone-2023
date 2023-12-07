@@ -62,10 +62,11 @@ const GlobalStyles = createGlobalStyle`
 	${reset};
 	* {
 		box-sizing: border-box;
+		/* outline: 1px solid blue; */
 	}
 	body {
-		background-color: black;
-		color: white;
+		background-color: white;
+		color: black;
 		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	}
 `;

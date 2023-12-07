@@ -12,8 +12,8 @@ export const HalfDiv = styled.div`
 	align-items: center;
 `;
 export const Title = styled.h1`
-	font-size: 42px;
-	font-weight: 600;
+	font-size: 27px;
+	font-weight: 700;
 `;
 export const Form = styled.form`
 	margin-top: 20px;
@@ -26,13 +26,14 @@ export const Form = styled.form`
 export const Input = styled.input`
 	padding: 10px 20px;
 	border-radius: 50px;
-	border: none;
+	border: 1px solid lightgray;
 	width: 100%;
 	font-size: 16px;
 	&[type='submit'] {
 		cursor: pointer;
 		background-color: #8cc152;
 		color: white;
+		font-weight: 600;
 		&:hover {
 			opacity: 0.8;
 		}
@@ -60,7 +61,7 @@ export const Buttons = styled.div`
 
 export const MainTitle = styled.h1`
 	font-size: 70px;
-	font-weight: 600;
+	font-weight: 700;
 	padding: 50px 0px;
 `;
 
