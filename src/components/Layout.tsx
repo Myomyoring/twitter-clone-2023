@@ -136,6 +136,7 @@ const RightItemTitle = styled.h1`
 export default function Layout() {
 	const navigate = useNavigate();
 	const user = auth.currentUser;
+	const profileImg = user?.photoURL;
 	const onLogOut = async () => {
 		const ok = confirm('정말 로그아웃 하시겠습니까?');
 		if (ok) {
@@ -158,7 +159,7 @@ export default function Layout() {
 					</MenuItem>
 				))}
 				<MiniProfile>
-					<img src="/logo.svg" />
+					<img src={profileImg} />
 					<div>
 						<span>{user?.displayName}</span>
 						<span>@{user?.displayName}</span>
