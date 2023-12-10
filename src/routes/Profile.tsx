@@ -6,6 +6,8 @@ import { updateProfile } from 'firebase/auth';
 import { ITweet } from '../components/Timeline';
 import Tweet from '../components/Tweet';
 import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
+import { CommonButton } from '../components/common/Common-Btn';
+import { Input } from '../components/Auth-Components';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -47,8 +49,17 @@ const Tweets = styled.div`
 
 export default function Profile() {
 	const user = auth.currentUser;
+	const [isLoading, setLoading] = useState(false);
 	const [avatar, setAvatar] = useState(user?.photoURL);
 	const [tweets, setTweets] = useState<ITweet[]>([]);
+	const [modify, setModify] = useState(false);
+	const [name, setName] = useState(user?.displayName);
+	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const {
+			target: { value },
+		} = e;
+		setName(value);
+	};
 	const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { files } = e.target;
 		if (!user) return;
@@ -61,6 +72,18 @@ export default function Profile() {
 			await updateProfile(user, {
 				photoURL: avatarUrl,
 			});
+		}
+	};
+	const onNameChange = async () => {
+		if (!user || isLoading || name === '' || name === user.displayName) return;
+		try {
+			setLoading(true);
+			await updateProfile(user, { displayName: name });
+		} catch (err) {
+			console.log(err);
+		} finally {
+			setModify(false);
+			setLoading(false);
 		}
 	};
 	const fetchTweets = async () => {
@@ -99,7 +122,19 @@ export default function Profile() {
 				)}
 			</AvatarUpload>
 			<AvatarInput onChange={onAvatarChange} id="avatar" type="file" accept="image/*" />
-			<Name>{user?.displayName ?? 'Anonymous'}</Name>
+			{!modify ? (
+				<Name>{user?.displayName ?? 'Anonymous'}</Name>
+			) : (
+				<Input width="200px;" onChange={onChange} name="name" value={name} placeholder="이름" type="text" required />
+			)}
+			{modify && (
+				<CommonButton onClick={() => onNameChange()} width="120px;">
+					{isLoading ? '수정 중...' : '수정'}
+				</CommonButton>
+			)}
+			<CommonButton width="120px;" onClick={() => setModify(!modify)}>
+				{!modify ? '닉네임 수정' : '취소'}
+			</CommonButton>
 			<Tweets>
 				{tweets.map((tweet) => (
 					<Tweet key={tweet.id} {...tweet} />

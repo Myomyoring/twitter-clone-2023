@@ -23,11 +23,11 @@ export const Form = styled.form`
 	gap: 10px;
 	width: 100%;
 `;
-export const Input = styled.input`
+export const Input = styled.input<{ width?: string }>`
 	padding: 10px 20px;
 	border-radius: 50px;
 	border: 1px solid lightgray;
-	width: 100%;
+	width: ${(props) => (props.width ? props.width : '100%')};
 	font-size: 16px;
 	&[type='submit'] {
 		cursor: pointer;
