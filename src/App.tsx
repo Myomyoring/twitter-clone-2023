@@ -1,17 +1,19 @@
+import { useEffect, useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { auth } from './firebase';
+
 import Layout from './components/Layout';
+import LoadingScreen from './components/Loading-Screen';
+import ProtectedRoute from './components/Protected-Route';
+
+import Auth from './routes/Auth';
+import CreateAccount from './routes/Create-Account';
 import Home from './routes/Home';
+import LoginIndex from './routes/Login-index';
 import Login from './routes/Login';
 import Profile from './routes/Profile';
-import CreateAccount from './routes/Create-Account';
-import { useEffect, useState } from 'react';
-import LoadingScreen from './components/Loading-Screen';
-import { auth } from './firebase';
-import ProtectedRoute from './components/Protected-Route';
-import Auth from './routes/Auth';
-import LoginIndex from './routes/Login-index';
 
 const router = createBrowserRouter([
 	{
@@ -62,7 +64,6 @@ const GlobalStyles = createGlobalStyle`
 	${reset};
 	* {
 		box-sizing: border-box;
-		/* outline: 1px solid blue; */
 	}
 	body {
 		background-color: white;
@@ -78,7 +79,7 @@ const Wrapper = styled.div`
 	justify-content: center;
 `;
 
-function App() {
+export default function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const init = async () => {
 		await auth.authStateReady();
@@ -94,5 +95,3 @@ function App() {
 		</Wrapper>
 	);
 }
-
-export default App;

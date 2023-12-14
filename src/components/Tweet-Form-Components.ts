@@ -6,7 +6,7 @@ export const Form = styled.form`
 	gap: 10px;
 `;
 export const TextArea = styled.textarea`
-	border: 2px solid white;
+	border: 0.6px solid white;
 	padding: 20px;
 	border-radius: 20px;
 	font-size: 16px;
@@ -59,6 +59,6 @@ export const Nav = styled.nav`
 	justify-content: space-between;
 	align-items: center;
 	gap: 14px;
-	border-top: 1px solid lightgray;
-	border-bottom: 1px solid lightgray;
+	border-top: 0.6px solid lightgray;
+	border-bottom: 0.6px solid lightgray;
 `;

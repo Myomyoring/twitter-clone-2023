@@ -125,7 +125,7 @@ export default function Profile() {
 			{!modify ? (
 				<Name>{user?.displayName ?? 'Anonymous'}</Name>
 			) : (
-				<Input width="200px;" onChange={onChange} name="name" value={name} placeholder="이름" type="text" required />
+				<Input width="200px;" onChange={onChange} name="name" value={name || ''} placeholder="이름" type="text" required />
 			)}
 			{modify && (
 				<CommonButton onClick={() => onNameChange()} width="120px;">

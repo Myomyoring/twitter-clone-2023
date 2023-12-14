@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 	display: grid;
 	grid-template-columns: 3fr 1fr;
 	padding: 16px;
-	border-bottom: 1px solid lightgray;
+	border-bottom: 0.6px solid lightgray;
 `;
 
 const Column = styled.div`
